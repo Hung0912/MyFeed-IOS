@@ -9,10 +9,10 @@
 import Foundation
 
 struct Poster {
-    var name : String?
-    var address : String?
-    var birthdate : String?
-    var avatar: String?
+    var name : String
+    var address : String
+    var birthdate : String
+    var avatar: String
     
     init(name: String, address: String, birthdate: String, avatar: String) {
         self.name = name

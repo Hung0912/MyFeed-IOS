@@ -24,21 +24,18 @@ class ViewController: UITableViewController {
         navigationItem.title = "Feed"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "add")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(addNewPost))
         
+        initData()
+        
+    }
+    
+    fileprivate func initData() {
         // Some data
         let poster = Poster(name: "Hiroshi", address: "Tokyo", birthdate: "28-05-1989", avatar: "avatar")
-        
-        var goodLunch = Post(poster: poster)
-        goodLunch.statusText = "Good lunch, good food with my friends ^^\nGood lunch, good food with my friends ^^\nGood lunch, good food with my friends ^^"
-        goodLunch.postImage = UIImage(named: "post_image")
-        goodLunch.postTime = Date()
-        
-        var lostCat = Post(poster: poster)
-        lostCat.statusText = "Anyone see my cat :("
-        lostCat.postTime = Date()
+        let goodLunch = Post(poster: poster, statusText: "Good lunch, good food with my friends ^^\nGood lunch, good food with my friends ^^\nGood lunch, good food with my friends ^^" ,postImage: UIImage(named: "post_image"), createDate: Date())
+        let lostCat = Post(poster: poster, statusText:"Anyone see my cat :(", postImage: nil, createDate: Date())
         
         posts.append(goodLunch)
         posts.append(lostCat)
-        
     }
     
     
@@ -89,7 +86,6 @@ extension ViewController: PostCellDelegate{
         let profileVC = ProfileViewController()
         profileVC.poster = poster
         navigationController?.pushViewController(profileVC, animated: true)
-        
     }
     
 }

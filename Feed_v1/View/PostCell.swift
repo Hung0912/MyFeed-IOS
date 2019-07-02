@@ -60,7 +60,7 @@ class PostCell : UITableViewCell {
     let statusLabel : UILabel = {
         let lbl = UILabel()
 //        lbl.backgroundColor = .yellow
-        lbl.numberOfLines = 3
+        lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.font = UIFont.systemFont(ofSize: 9)
         return lbl
@@ -68,6 +68,8 @@ class PostCell : UITableViewCell {
     
     let postImage : UIImageView = {
         let img = UIImageView()
+        img.clipsToBounds = true
+        img.layer.cornerRadius = 10
         img.contentMode = .scaleToFill
         return img
     }()
@@ -100,18 +102,14 @@ class PostCell : UITableViewCell {
     var postImageHeightConstraint: NSLayoutConstraint!
     
     func didSetPost(post: Post){
-        if let avatarImage = post.poster.avatar {
-            self.avatarBtn.setImage(UIImage(named: avatarImage), for: .normal)
-        }
+        let avatarImage = post.poster.avatar
+        self.avatarBtn.setImage(UIImage(named: avatarImage), for: .normal)
         
-        if let name = post.poster.name {
-            let atributedText = NSMutableAttributedString(string: name, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)])
-            
-            guard let elapsedInterval = post.postTime?.timeAgoSinceDate() else {return}
-            
-            atributedText.append(NSAttributedString(string: "\n\(elapsedInterval)", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 9)]))
-            self.nameLabel.attributedText = atributedText
-        }
+        let name = post.poster.name
+        let atributedText = NSMutableAttributedString(string: name, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)])
+        guard let elapsedInterval = post.postTime?.timeAgoSinceDate() else {return}
+        atributedText.append(NSAttributedString(string: "\n\(elapsedInterval)", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 9)]))
+        self.nameLabel.attributedText = atributedText
         
         self.statusLabel.text = post.statusText
         
@@ -146,7 +144,7 @@ class PostCell : UITableViewCell {
             avatarBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             
             nameLabel.heightAnchor.constraint(equalToConstant: 30),
-            nameLabel.widthAnchor.constraint(equalToConstant: 100),
+            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             nameLabel.leadingAnchor.constraint(equalTo: avatarBtn.trailingAnchor, constant: 8),
             nameLabel.centerYAnchor.constraint(equalTo: avatarBtn.centerYAnchor),
             

@@ -16,7 +16,8 @@ class NewPostVC: UIViewController{
     
     weak var delegate: NewPostVCDelegate?
     
-    var imagePicker = UIImagePickerController()
+    var imagePickerController = UIImagePickerController()
+    let poster = Poster(name: "Hiroshi", address: "Tokyo", birthdate: "28-05-1989", avatar: "avatar")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class NewPostVC: UIViewController{
         addBtn.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
         addPhotoBtn.addTarget(self, action: #selector(addPhotoHandle), for: .touchUpInside)
         statusTextView.delegate = self
+        imagePickerController.delegate = self
         self.setupLayout()
     }
     
@@ -33,7 +35,8 @@ class NewPostVC: UIViewController{
         tv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         tv.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         tv.layer.borderWidth = 1
-        tv.font = UIFont.systemFont(ofSize: 13)
+//        tv.font = UIFont.systemFont(ofSize: 13)
+        tv.font = UIFont(name: "Hiragino Sans", size: 13)
         tv.text = "write something..."
         tv.textColor = UIColor.lightGray
         return tv
@@ -43,12 +46,14 @@ class NewPostVC: UIViewController{
     let addPhotoLabel : UILabel = {
         let lbl = UILabel()
         lbl.text = "Add photo"
-        lbl.font = UIFont.systemFont(ofSize: 14)
+        lbl.font = UIFont(name: "Hiragino Sans", size: 14)
         return lbl
     }()
     
     let addPhotoBtn : UIButton = {
         let btn = UIButton()
+        btn.layer.cornerRadius = 5
+        btn.clipsToBounds = true
         btn.setImage(UIImage(named: "add_photo"), for: .normal)
         return btn
     }()
@@ -104,22 +109,19 @@ class NewPostVC: UIViewController{
     }
     
     @objc func addPhotoHandle(){
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     @objc func addPressed(){
         if let statusText = self.statusTextView.text {
-            let poster = Poster(name: "Hiroshi", address: "Tokyo", birthdate: "28-05-1989", avatar: "avatar")
-            var post = Post(poster: poster)
-            post.statusText = statusText
-            if !self.addPhotoBtn.isUserInteractionEnabled{
+            var post = Post(poster: poster, statusText: statusText, postImage: nil, createDate: Date())
+            if self.addPhotoBtn.isSelected{
                 post.postImage = addPhotoBtn.currentImage
             }
             if statusText != "" && statusText != "write something..."{
                 print("Added")
-                post.postTime = Date()
                 self.delegate?.handleAddPost(post: post)
             }else{
                 let alert = UIAlertController(title: "Status is empty!", message: "Please write status before adding!", preferredStyle: .alert)
@@ -150,10 +152,12 @@ extension NewPostVC: UITextViewDelegate{
 }
 
 extension NewPostVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            addPhotoBtn.setImage(image, for: .normal)
-            addPhotoBtn.isUserInteractionEnabled = false
+    
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imagePicker = info[.originalImage] as? UIImage {
+            addPhotoBtn.setImage(imagePicker, for: .selected)
+            addPhotoBtn.isSelected = true
         }
         picker.dismiss(animated: true, completion: nil)
     }

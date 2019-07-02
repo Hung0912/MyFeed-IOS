@@ -17,8 +17,8 @@
 		040D10FA22C9A48900001509 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10F922C9A48800001509 /* Poster.swift */; };
 		040D10FC22C9F6C200001509 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FB22C9F6C100001509 /* ProfileVC.swift */; };
 		040D10FE22C9FF6F00001509 /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FD22C9FF6F00001509 /* NewPostVC.swift */; };
-		040D110022CA066100001509 /* MyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FF22CA066100001509 /* MyTextView.swift */; };
 		04D7B29A22CB01A70000B2CC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B29922CB01A70000B2CC /* DateExtension.swift */; };
+		04D7B29C22CB38F80000B2CC /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B29B22CB38F80000B2CC /* MyTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,8 @@
 		040D10F922C9A48800001509 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
 		040D10FB22C9F6C100001509 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		040D10FD22C9FF6F00001509 /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
-		040D10FF22CA066100001509 /* MyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextView.swift; sourceTree = "<group>"; };
 		04D7B29922CB01A70000B2CC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		04D7B29B22CB38F80000B2CC /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				040D10F222C9A1EC00001509 /* PostCell.swift */,
-				040D10FF22CA066100001509 /* MyTextView.swift */,
+				04D7B29B22CB38F80000B2CC /* MyTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,9 +185,9 @@
 				040D10E322C99DE400001509 /* ViewController.swift in Sources */,
 				040D10F322C9A1EC00001509 /* PostCell.swift in Sources */,
 				04D7B29A22CB01A70000B2CC /* DateExtension.swift in Sources */,
+				04D7B29C22CB38F80000B2CC /* MyTextField.swift in Sources */,
 				040D10FA22C9A48900001509 /* Poster.swift in Sources */,
 				040D10E122C99DE400001509 /* AppDelegate.swift in Sources */,
-				040D110022CA066100001509 /* MyTextView.swift in Sources */,
 				040D10F822C9A3F300001509 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

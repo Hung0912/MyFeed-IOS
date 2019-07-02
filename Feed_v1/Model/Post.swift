@@ -20,11 +20,13 @@ struct Post {
     
     var hasLiked = false
     
-    init(poster: Poster) {
+    init(poster: Poster, statusText: String , postImage: UIImage?, createDate: Date) {
         self.poster = poster
         self.like = 0
         self.comment = 0
-        self.statusText = ""
+        self.statusText = statusText
+        self.postTime = createDate
+        self.postImage = postImage
     }
     
 }
