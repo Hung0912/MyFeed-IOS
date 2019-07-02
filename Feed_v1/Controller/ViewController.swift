@@ -85,11 +85,9 @@ extension ViewController: PostCellDelegate{
         self.tableView.reloadData()
     }
     
-    func handleShowProfile(cell: UITableViewCell) {
-        guard let indexPathTapped = tableView.indexPath(for: cell) else {return}
-        
+    func handleShowProfile(poster: Poster) {
         let profileVC = ProfileViewController()
-        profileVC.poster = posts[indexPathTapped.row].poster
+        profileVC.poster = poster
         navigationController?.pushViewController(profileVC, animated: true)
         
     }

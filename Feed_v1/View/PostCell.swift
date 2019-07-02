@@ -11,7 +11,7 @@ import UIKit
 protocol PostCellDelegate : class{
     func handleLike(cell : UITableViewCell)
     
-    func handleShowProfile(cell : UITableViewCell)
+    func handleShowProfile(poster : Poster)
 }
 
 class PostCell : UITableViewCell {
@@ -27,7 +27,9 @@ class PostCell : UITableViewCell {
     }
     
     @objc func avatarClicked(){
-        self.delegate?.handleShowProfile(cell: self)
+        if let poster = self.post?.poster {
+             self.delegate?.handleShowProfile(poster: poster)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

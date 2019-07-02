@@ -14,6 +14,10 @@ protocol NewPostVCDelegate : class{
 
 class NewPostVC: UIViewController{
     
+    weak var delegate: NewPostVCDelegate?
+    
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -22,43 +26,6 @@ class NewPostVC: UIViewController{
         addPhotoBtn.addTarget(self, action: #selector(addPhotoHandle), for: .touchUpInside)
         statusTextView.delegate = self
         self.setupLayout()
-        
-
-    }
-    
-    weak var delegate: NewPostVCDelegate?
-    
-    @objc func addPhotoHandle(){
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    @objc func addPressed(){
-        if let statusText = self.statusTextView.text {
-            let poster = Poster(name: "Hiroshi", address: "Tokyo", birthdate: "28-05-1989", avatar: "avatar")
-            var post = Post(poster: poster)
-            post.statusText = statusText
-            if !self.addPhotoBtn.isUserInteractionEnabled{
-                post.postImage = addPhotoBtn.currentImage
-            }
-            if statusText != "" && statusText != "write something…"{
-                print("Added")
-                post.postTime = Date()
-                self.delegate?.handleAddPost(post: post)
-            }else{
-                let alert = UIAlertController(title: "Status is empty!", message: "Please write status before adding!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-            }
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-        
-    }
-    
-    func getTime(){
-        
     }
     
     let statusTextView : UITextView = {
@@ -67,7 +34,7 @@ class NewPostVC: UIViewController{
         tv.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         tv.layer.borderWidth = 1
         tv.font = UIFont.systemFont(ofSize: 13)
-        tv.text = "write something…"
+        tv.text = "write something..."
         tv.textColor = UIColor.lightGray
         return tv
     }()
@@ -136,7 +103,33 @@ class NewPostVC: UIViewController{
         statusTextView.layer.cornerRadius = 5
     }
     
-    var imagePicker = UIImagePickerController()
+    @objc func addPhotoHandle(){
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func addPressed(){
+        if let statusText = self.statusTextView.text {
+            let poster = Poster(name: "Hiroshi", address: "Tokyo", birthdate: "28-05-1989", avatar: "avatar")
+            var post = Post(poster: poster)
+            post.statusText = statusText
+            if !self.addPhotoBtn.isUserInteractionEnabled{
+                post.postImage = addPhotoBtn.currentImage
+            }
+            if statusText != "" && statusText != "write something..."{
+                print("Added")
+                post.postTime = Date()
+                self.delegate?.handleAddPost(post: post)
+            }else{
+                let alert = UIAlertController(title: "Status is empty!", message: "Please write status before adding!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
 }
 
 extension NewPostVC: UITextViewDelegate{
@@ -150,7 +143,7 @@ extension NewPostVC: UITextViewDelegate{
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
-            textView.text = "Placeholder"
+            textView.text = "write something..."
             textView.textColor = UIColor.lightGray
         }
     }
