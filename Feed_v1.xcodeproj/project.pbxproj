@@ -12,6 +12,13 @@
 		040D10E622C99DE400001509 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040D10E422C99DE400001509 /* Main.storyboard */; };
 		040D10E822C99DE600001509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040D10E722C99DE600001509 /* Assets.xcassets */; };
 		040D10EB22C99DE600001509 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040D10E922C99DE600001509 /* LaunchScreen.storyboard */; };
+		040D10F322C9A1EC00001509 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10F222C9A1EC00001509 /* PostCell.swift */; };
+		040D10F822C9A3F300001509 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10F722C9A3F300001509 /* Post.swift */; };
+		040D10FA22C9A48900001509 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10F922C9A48800001509 /* Poster.swift */; };
+		040D10FC22C9F6C200001509 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FB22C9F6C100001509 /* ProfileVC.swift */; };
+		040D10FE22C9FF6F00001509 /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FD22C9FF6F00001509 /* NewPostVC.swift */; };
+		040D110022CA066100001509 /* MyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D10FF22CA066100001509 /* MyTextView.swift */; };
+		04D7B29A22CB01A70000B2CC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B29922CB01A70000B2CC /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		040D10E722C99DE600001509 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		040D10EA22C99DE600001509 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		040D10EC22C99DE600001509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		040D10F222C9A1EC00001509 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		040D10F722C9A3F300001509 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		040D10F922C9A48800001509 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		040D10FB22C9F6C100001509 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		040D10FD22C9FF6F00001509 /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
+		040D10FF22CA066100001509 /* MyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextView.swift; sourceTree = "<group>"; };
+		04D7B29922CB01A70000B2CC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,45 @@
 		040D10DF22C99DE400001509 /* Feed_v1 */ = {
 			isa = PBXGroup;
 			children = (
+				040D10F622C9A3AD00001509 /* Model */,
+				040D10F522C9A3A900001509 /* View */,
+				040D10F422C9A39F00001509 /* Controller */,
 				040D10E022C99DE400001509 /* AppDelegate.swift */,
-				040D10E222C99DE400001509 /* ViewController.swift */,
 				040D10E422C99DE400001509 /* Main.storyboard */,
 				040D10E722C99DE600001509 /* Assets.xcassets */,
 				040D10E922C99DE600001509 /* LaunchScreen.storyboard */,
 				040D10EC22C99DE600001509 /* Info.plist */,
+				04D7B29922CB01A70000B2CC /* DateExtension.swift */,
 			);
 			path = Feed_v1;
+			sourceTree = "<group>";
+		};
+		040D10F422C9A39F00001509 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				040D10E222C99DE400001509 /* ViewController.swift */,
+				040D10FB22C9F6C100001509 /* ProfileVC.swift */,
+				040D10FD22C9FF6F00001509 /* NewPostVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		040D10F522C9A3A900001509 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040D10F222C9A1EC00001509 /* PostCell.swift */,
+				040D10FF22CA066100001509 /* MyTextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040D10F622C9A3AD00001509 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				040D10F722C9A3F300001509 /* Post.swift */,
+				040D10F922C9A48800001509 /* Poster.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040D10FE22C9FF6F00001509 /* NewPostVC.swift in Sources */,
+				040D10FC22C9F6C200001509 /* ProfileVC.swift in Sources */,
 				040D10E322C99DE400001509 /* ViewController.swift in Sources */,
+				040D10F322C9A1EC00001509 /* PostCell.swift in Sources */,
+				04D7B29A22CB01A70000B2CC /* DateExtension.swift in Sources */,
+				040D10FA22C9A48900001509 /* Poster.swift in Sources */,
 				040D10E122C99DE400001509 /* AppDelegate.swift in Sources */,
+				040D110022CA066100001509 /* MyTextView.swift in Sources */,
+				040D10F822C9A3F300001509 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
